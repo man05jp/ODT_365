@@ -55,6 +55,7 @@ mkdir "%FolderPath%"
 echo Folder: "%FolderName%" created at "%currentDir%".
 
 :: Download the setup.exe
+echo.
 echo Downloading "setup.exe"...
 powershell -Command "$ErrorActionPreference = 'Stop'; Invoke-WebRequest -Uri '%setupURL%' -OutFile '%FolderPath%\setup.exe'"
 if %ERRORLEVEL% NEQ 0 (
@@ -63,9 +64,7 @@ if %ERRORLEVEL% NEQ 0 (
 	pause
 	exit /b
 )
-echo.
-echo The setup.exe and XML configuration - ("%channelType%") has been successfully downloaded/created at:
-echo "%FolderPath%" and will be use for storing installation files
+echo Setup.exe is downloaded successfully.
 
 :: Create the XML configuration
 (
@@ -97,6 +96,9 @@ echo		^</AppSettings^>
 echo		^<Display Level="Full" AcceptEULA="TRUE" /^>
 echo	^</Configuration^>
 ) > "%FolderPath%\%channelType%.xml"
+echo XML configuration is created successfully.
+echo.
+echo "%FolderPath%" and will be use for storing installation files
 
 cd /d "%FolderPath%" || (
 	echo.
@@ -124,11 +126,9 @@ if %ERRORLEVEL% NEQ 0 (
     pause
     exit /b
 )
-echo The configuration is complete, and Office 365 is ready for use.
-
+echo The configuration is complete and installation was successful, You can start using Office 365 right away!
 echo.
-echo The installation was successful. You can start using Office 365 right away!
+echo All temporary files have been removed from folder "%FolderName%" to clean up your directory.
 echo.
-echo All installation files have been removed from folder "%FolderName%" to clean up your directory.
 pause
-start cmd /k "cd /d !currentDir! && rmdir /s /q "%FolderPath%" && exit"
+start cmd /k "cd /d %currentDir% && rmdir /s /q "%FolderPath%" && exit"
