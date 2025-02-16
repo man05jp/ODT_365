@@ -2,7 +2,7 @@
 SETLOCAL ENABLEDELAYEDEXPANSION
 
 :: Set the raw GitHub URL
-SET "fileURL=https://raw.githubusercontent.com/Mano5JP/ODT_365/refs/heads/main/ODT365_Source.bat"
+SET "fileURL=https://raw.githubusercontent.com/man05jp/ODT_365/refs/heads/main/ODT365_Source.bat"
 SET "FileNameOf=OfficeDeploymentTool.bat"
 :: Download the latest batch file
 echo Downloading the latest version of the script...
