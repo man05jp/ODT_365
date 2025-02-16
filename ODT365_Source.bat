@@ -69,29 +69,36 @@ echo "%FolderPath%" and will be use for storing installation files
 
 :: Create the XML configuration
 (
-	echo ^<Configuration ID="2d270039-c9dd-4724-93f3-d519068e2242"^>
-	echo   ^<Remove All="True"^>
-	echo     ^<RemoveMSI All="True" /^>
-	echo   ^</Remove^>
-	echo   ^<Add OfficeClientEdition="64" Channel="!channelType!" MigrateArch="TRUE"^>
-	echo     ^<Product ID="O365ProPlusRetail"^>
-	echo       ^<Language ID="MatchOS" /^>
-	echo       ^<ExcludeApp ID="Access" /^>
-	echo       ^<ExcludeApp ID="Groove" /^>
-	echo       ^<ExcludeApp ID="Lync" /^>
-	echo       ^<ExcludeApp ID="Outlook" /^>
-	echo       ^<ExcludeApp ID="Publisher" /^>
-	echo       ^<ExcludeApp ID="Bing" /^>
-	echo     ^</Product^>
-	echo   ^</Add^>
-	echo   ^<Property Name="SharedComputerLicensing" Value="0" /^>
-	echo   ^<Property Name="FORCEAPPSHUTDOWN" Value="TRUE" /^>
-	echo   ^<Property Name="DeviceBasedLicensing" Value="0" /^>
-	echo   ^<Property Name="SCLCacheOverride" Value="0" /^>
-	echo   ^<Updates Enabled="TRUE" /^>
-	echo   ^<RemoveMSI /^>
-	echo   ^<Display Level="Full" AcceptEULA="TRUE" /^>
-	echo ^</Configuration^>
+echo <Configuration ID="2526aef5-bb32-48b8-8b28-11dd9740b2df">
+echo	^<Remove All="True"^>
+echo		^<RemoveMSI All="True" /^>
+echo	^</Remove^>
+echo	<Info Description="This Office365 was installed with custom configuration." />
+echo	<Add OfficeClientEdition="64" Channel="!channelType!" MigrateArch="TRUE">
+echo		<Product ID="O365ProPlusRetail">
+echo		<Language ID="MatchOS" />
+echo		<Language ID="MatchPreviousMSI" />
+echo		<ExcludeApp ID="Access" />
+echo		<ExcludeApp ID="Groove" />
+echo		<ExcludeApp ID="Lync" />
+echo		<ExcludeApp ID="OneDrive" />
+echo		<ExcludeApp ID="OneNote" />
+echo		<ExcludeApp ID="Outlook" />
+echo		<ExcludeApp ID="Publisher" />
+echo		<ExcludeApp ID="Bing" />
+echo	</Product>
+echo	</Add>
+echo	<Property Name="SharedComputerLicensing" Value="0" />
+echo	<Property Name="FORCEAPPSHUTDOWN" Value="TRUE" />
+echo	<Property Name="DeviceBasedLicensing" Value="0" />
+echo	<Property Name="SCLCacheOverride" Value="0" />
+echo	<Updates Enabled="TRUE" />
+echo	<RemoveMSI />
+echo	<AppSettings>
+echo		<Setup Name="Company" Value="MSO-365" />
+echo	</AppSettings>
+echo	<Display Level="Full" AcceptEULA="TRUE" />
+echo </Configuration>
 ) > "!FolderPath!\!channelType!.xml"
 
 cd /d "!FolderPath!" || (
