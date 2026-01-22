@@ -80,7 +80,6 @@ echo				^<ExcludeApp ID="Groove" /^>
 echo				^<ExcludeApp ID="Lync" /^>
 echo				^<ExcludeApp ID="OneDrive" /^>
 echo				^<ExcludeApp ID="OneNote" /^>
-echo				^<ExcludeApp ID="Outlook" /^>
 echo				^<ExcludeApp ID="Publisher" /^>
 echo				^<ExcludeApp ID="Bing" /^>
 echo			^</Product^>
